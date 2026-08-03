@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="400" height="220" role="img" aria-label="Weatherly project preview">
+  <rect width="400" height="220" fill="#161b27"/>
+  <!-- sky gradient block -->
+  <rect x="20" y="30" width="360" height="100" rx="12" fill="#1e2535"/>
+  <!-- sun -->
+  <circle cx="80" cy="80" r="28" fill="#f59e0b" opacity="0.85"/>
+  <!-- temp text area -->
+  <rect x="130" y="50" width="80" height="30" rx="6" fill="#2d3548"/>
+  <rect x="130" y="86" width="120" height="12" rx="3" fill="#2d3548" opacity="0.7"/>
+  <!-- forecast cards row -->
+  <rect x="20" y="150" width="60" height="50" rx="8" fill="#1e2535"/>
+  <rect x="90" y="150" width="60" height="50" rx="8" fill="#1e2535"/>
+  <rect x="160" y="150" width="60" height="50" rx="8" fill="#1e2535"/>
+  <rect x="230" y="150" width="60" height="50" rx="8" fill="#1e2535"/>
+  <rect x="300" y="150" width="60" height="50" rx="8" fill="#1e2535"/>
+  <!-- dots in cards -->
+  <circle cx="50" cy="170" r="8" fill="#f59e0b" opacity="0.7"/>
+  <circle cx="120" cy="170" r="8" fill="#8892a4" opacity="0.7"/>
+  <circle cx="190" cy="170" r="8" fill="#6c63ff" opacity="0.7"/>
+  <circle cx="260" cy="170" r="8" fill="#8892a4" opacity="0.7"/>
+  <circle cx="330" cy="170" r="8" fill="#f59e0b" opacity="0.7"/>
+  <text x="200" y="18" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="12" fill="#f59e0b" font-weight="600">Weatherly — 7-Day Forecast</text>
+</svg>

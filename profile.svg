@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 280" width="280" height="280" role="img" aria-label="Profile avatar placeholder">
+  <circle cx="140" cy="140" r="140" fill="#1e2535"/>
+  <!-- body -->
+  <ellipse cx="140" cy="220" rx="70" ry="45" fill="#2d3548"/>
+  <!-- head -->
+  <circle cx="140" cy="110" r="48" fill="#2d3548"/>
+  <!-- accent circle -->
+  <circle cx="140" cy="110" r="48" fill="none" stroke="#6c63ff" stroke-width="3" opacity="0.4"/>
+  <!-- simple face hint -->
+  <circle cx="125" cy="106" r="5" fill="#6c63ff" opacity="0.7"/>
+  <circle cx="155" cy="106" r="5" fill="#6c63ff" opacity="0.7"/>
+  <path d="M128 125 Q140 136 152 125" stroke="#6c63ff" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+</svg>

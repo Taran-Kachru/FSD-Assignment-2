@@ -1,7 +1,7 @@
 # Personal Portfolio Website — Assignment 1
 
 **Course:** Full Stack Development  
-**Student:** Varun  
+**Student:** Taran  
 **Tech stack:** HTML5 · CSS3 (no frameworks, no preprocessors)
 
 ---

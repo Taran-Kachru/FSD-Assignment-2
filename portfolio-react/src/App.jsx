@@ -11,7 +11,7 @@ import NotFound from './pages/NotFound';
 export default function App() {
   return (
     <ThemeProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/FSD-Assignment-2">
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route element={<Layout />}>

@@ -1,47 +1,120 @@
-# Personal Portfolio Website — Assignment 1
+# Taran — Portfolio Website (React)
 
 **Course:** Full Stack Development  
 **Student:** Taran  
-**Tech stack:** HTML5 · CSS3 (no frameworks, no preprocessors)
+**Tech stack:** React 19 · React Router v7 · Vite · CSS3 (no UI framework)
 
 ---
 
-## Design Rationale
+## Setup & Run
 
-The site uses a **dark theme** (deep navy-black background `#0f1117` with a violet accent `#6c63ff`) to create a professional developer aesthetic while keeping contrast ratios above WCAG AA throughout. All interactive text pairs score ≥ 4.5 : 1; large heading text scores ≥ 3 : 1. Custom properties (`--clr-*`, `--fs-*`, `--sp-*`) centralise every design token in `:root`, so theme changes require edits in exactly one place.
+```bash
+cd portfolio-react
+npm install
+npm run dev          # starts dev server at http://localhost:5173
+npm run build        # production build → dist/
+npm run preview      # serve the production build locally
+```
 
-## Layout Technique Justification
+> The original static site (`index.html` + `style.css`) remains at the repo root and is untouched.
 
-Two layout primitives are used deliberately, each chosen for the content type it serves:
+---
 
-**CSS Grid** is used for:
-- The hero section — a two-column grid (`1fr 1fr`) naturally splits content and avatar side-by-side and collapses to a single column at tablet width.
-- The About section — another two-column grid for bio text and skill bars.
-- The contact form's first row — a `1fr 1fr` grid aligns Name and Email fields as a pair.
-- The project gallery — `repeat(auto-fill, minmax(300px, 1fr))` gives intrinsically responsive card tiling with zero media-query overhead.
+## Component Structure
 
-**Flexbox** is used for:
-- The sticky header navigation — one-dimensional horizontal alignment with `space-between`.
-- Skill bar items, form groups, and button clusters — wherever items flow along a single axis and wrapping or gap control is the main need.
+```
+src/
+├── context/
+│   └── ThemeContext.jsx       # dark/light theme state + localStorage
+├── data/
+│   └── projects.js            # array of 4 project objects
+├── components/
+│   ├── Navbar/
+│   │   └── Navbar.jsx         # sticky header, NavLink active states, theme toggle
+│   ├── Footer/
+│   │   └── Footer.jsx         # footer nav with NavLink
+│   ├── Layout/
+│   │   └── Layout.jsx         # shared wrapper — <Navbar> + <Outlet> + <Footer>
+│   ├── ProjectCard/
+│   │   └── ProjectCard.jsx    # card driven entirely by props; owns showDetails state
+│   ├── Skills/
+│   │   └── Skills.jsx         # renders skill bars from a skills[] prop
+│   └── ContactForm/
+│       └── ContactForm.jsx    # fully controlled form with validation
+├── pages/
+│   ├── Home.jsx               # 1-second loading state on mount
+│   ├── About.jsx              # passes skills[] down to Skills (prop drilling level 1→2)
+│   ├── Projects.jsx           # maps projects[] → ProjectCard, passes theme prop
+│   ├── ProjectDetail.jsx      # useParams() to look up project by ID
+│   ├── Contact.jsx            # renders ContactForm + contact info
+│   └── NotFound.jsx           # 404 catch-all
+├── App.jsx                    # BrowserRouter + Routes tree
+├── main.jsx                   # React root
+└── index.css                  # all styles (original CSS preserved + light theme + extras)
+```
 
-The split follows a clear rule: **Grid for two-dimensional regions, Flexbox for one-dimensional flows.**
+---
 
-## Responsive Breakpoints
+## State Lifting & Prop Drilling
 
-| Breakpoint | Width | Changes |
+`theme` state lives in `ThemeContext` (managed at app level via `ThemeProvider`).  
+`Projects.jsx` reads `theme` from context and passes it **down as a prop** to `ProjectCard`, which receives it as `{ project, theme }`. This creates a deliberate **2-level prop-drilling chain**:
+
+```
+ThemeContext → Projects (level 1) → ProjectCard (level 2)
+```
+
+`About.jsx` passes a `skills` array prop to `Skills.jsx`, another 2-level chain:
+
+```
+About (level 1) → Skills (level 2) — receives skills[]
+```
+
+---
+
+## `useState` Usage
+
+| Location | State | Purpose |
 |---|---|---|
-| Tablet | ≤ 768 px | Hero stacks vertically; about-grid stacks; form row collapses to 1 col; avatar shrinks |
-| Mobile | ≤ 480 px | Font scale reduced; hero CTA stacks; projects grid goes single-column; nav labels shrink |
+| `ThemeContext` | `theme` | Global dark/light mode; toggled via Navbar button |
+| `ContactForm` | `fields` | Controlled inputs (name, email, subject, message) |
+| `ContactForm` | `errors` | Validation error messages per field |
+| `ContactForm` | `touched` | Tracks which fields have been blurred (show errors only after interaction) |
+| `ContactForm` | `submitted` | Shows success message after valid submission |
+| `ProjectCard` | `showDetails` | Toggles short ↔ long description independently per card |
+| `Home` | `loading` | Shows loading dots for ~1 second on mount |
 
-## Interactive States & Animations
+The submit button is `disabled` when any required field has an error **and** the user has touched at least one field, preventing premature disabling on first render.
 
-- **`:hover`** — all buttons lift via `translateY(-2px)` + `box-shadow`; nav links reveal a sliding underline; project cards border highlights and image scales.
-- **`:focus-visible`** — a 2 px violet outline appears on all keyboard-focusable elements.
-- **CSS `transition`** — every interactive state change is eased (`250ms ease`).
-- **CSS `animation`** — the hero name cycles a `shimmer` brightness keyframe; skill bar widths grow in with a `grow-bar` keyframe on load.
+---
 
-## Known Limitations
+## `useEffect` Usage
 
-- **No JavaScript** — the contact form submits to `action="#"` and does not send email; client-side validation relies solely on HTML5 `required` attributes.
-- **Placeholder images** — all project thumbnails and the profile avatar are inline SVG illustrations; real screenshots would be swapped in for production.
-- **No dark/light toggle** — theming is dark-only; a `prefers-color-scheme` light variant was scoped out to keep the submission within the HTML/CSS-only constraint.
+| Location | Effect | Cleanup |
+|---|---|---|
+| `ThemeContext` | Reads `localStorage` for saved theme on init (via `useState` initialiser); writes to `localStorage` and sets `document.documentElement.dataset.theme` whenever `theme` changes | N/A — no subscription |
+| `Home` | `setTimeout` of 1 000 ms sets `loading → false` to simulate a page-load delay | `clearTimeout` is returned so the timer is cancelled if the component unmounts before it fires |
+
+---
+
+## Routes
+
+| Path | Component | Notes |
+|---|---|---|
+| `/` | → redirect | Redirects to `/home` |
+| `/home` | `Home` | Hero section with 1-second loading screen |
+| `/about` | `About` | Bio + skill bars |
+| `/projects` | `Projects` | Data-driven card grid |
+| `/projects/:projectId` | `ProjectDetail` | `useParams()` to find project; shows 404 fallback if ID unknown |
+| `/contact` | `Contact` | Controlled form + contact info |
+| `*` | `NotFound` | 404 page |
+
+All navigation uses `<Link>` or `<NavLink>` — no plain `<a>` tags for internal routes.
+
+---
+
+## Design Notes
+
+- The CSS from the original static site is reused **verbatim** with additions only for light-theme variables, the theme-toggle button, form error states, the loading animation, and the project-detail page.
+- The light theme is applied by setting `data-theme="light"` on `<html>` and overriding CSS custom properties — no class-name juggling required.
+- WCAG AA contrast is maintained in both themes; focus-visible outlines are preserved throughout.

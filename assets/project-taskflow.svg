@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="400" height="220" role="img" aria-label="TaskFlow project preview">
+  <rect width="400" height="220" fill="#161b27"/>
+  <!-- kanban columns -->
+  <rect x="20" y="40" width="110" height="160" rx="8" fill="#1e2535"/>
+  <rect x="145" y="40" width="110" height="160" rx="8" fill="#1e2535"/>
+  <rect x="270" y="40" width="110" height="160" rx="8" fill="#1e2535"/>
+  <!-- column headers -->
+  <rect x="30" y="50" width="90" height="18" rx="4" fill="#6c63ff" opacity="0.6"/>
+  <rect x="155" y="50" width="90" height="18" rx="4" fill="#f59e0b" opacity="0.6"/>
+  <rect x="280" y="50" width="90" height="18" rx="4" fill="#10b981" opacity="0.6"/>
+  <!-- cards -->
+  <rect x="30" y="78" width="90" height="40" rx="4" fill="#2d3548"/>
+  <rect x="30" y="124" width="90" height="40" rx="4" fill="#2d3548"/>
+  <rect x="155" y="78" width="90" height="40" rx="4" fill="#2d3548"/>
+  <rect x="280" y="78" width="90" height="40" rx="4" fill="#2d3548"/>
+  <!-- card lines -->
+  <rect x="38" y="86" width="60" height="6" rx="3" fill="#8892a4" opacity="0.5"/>
+  <rect x="38" y="96" width="45" height="4" rx="2" fill="#8892a4" opacity="0.3"/>
+  <rect x="38" y="132" width="60" height="6" rx="3" fill="#8892a4" opacity="0.5"/>
+  <rect x="163" y="86" width="60" height="6" rx="3" fill="#8892a4" opacity="0.5"/>
+  <rect x="288" y="86" width="60" height="6" rx="3" fill="#8892a4" opacity="0.5"/>
+  <!-- title -->
+  <text x="200" y="18" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="12" fill="#6c63ff" font-weight="600">TaskFlow — Kanban Board</text>
+</svg>

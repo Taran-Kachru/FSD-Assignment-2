@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="400" height="220" role="img" aria-label="ShopQuick project preview">
+  <rect width="400" height="220" fill="#161b27"/>
+  <!-- product grid -->
+  <rect x="20" y="40" width="110" height="130" rx="8" fill="#1e2535"/>
+  <rect x="145" y="40" width="110" height="130" rx="8" fill="#1e2535"/>
+  <rect x="270" y="40" width="110" height="130" rx="8" fill="#1e2535"/>
+  <!-- product image placeholders -->
+  <rect x="28" y="48" width="94" height="70" rx="4" fill="#2d3548"/>
+  <rect x="153" y="48" width="94" height="70" rx="4" fill="#2d3548"/>
+  <rect x="278" y="48" width="94" height="70" rx="4" fill="#2d3548"/>
+  <!-- icons in placeholders -->
+  <circle cx="75" cy="83" r="18" fill="#6c63ff" opacity="0.3"/>
+  <circle cx="200" cy="83" r="18" fill="#10b981" opacity="0.3"/>
+  <circle cx="325" cy="83" r="18" fill="#f59e0b" opacity="0.3"/>
+  <!-- price + button -->
+  <rect x="28" y="126" width="50" height="10" rx="3" fill="#10b981" opacity="0.7"/>
+  <rect x="28" y="142" width="94" height="18" rx="4" fill="#6c63ff" opacity="0.7"/>
+  <rect x="153" y="126" width="50" height="10" rx="3" fill="#10b981" opacity="0.7"/>
+  <rect x="153" y="142" width="94" height="18" rx="4" fill="#6c63ff" opacity="0.7"/>
+  <rect x="278" y="126" width="50" height="10" rx="3" fill="#10b981" opacity="0.7"/>
+  <rect x="278" y="142" width="94" height="18" rx="4" fill="#6c63ff" opacity="0.7"/>
+  <!-- cart bar -->
+  <rect x="20" y="185" width="360" height="20" rx="6" fill="#1e2535"/>
+  <rect x="25" y="189" width="80" height="12" rx="3" fill="#6c63ff" opacity="0.5"/>
+  <text x="200" y="18" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="12" fill="#10b981" font-weight="600">ShopQuick — E-Commerce</text>
+</svg>
